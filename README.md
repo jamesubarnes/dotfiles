@@ -4,15 +4,16 @@ Personal configuration files, managed with [GNU Stow](https://www.gnu.org/softwa
 
 ## Contents
 
-- `.zshrc` — Zsh configuration
+- `.gitconfig` — Git configuration
 - `.vimrc` — Vim configuration
+- `.zshrc` — Zsh configuration
 
 ## Setup
 ```sh
 brew install stow
 cd ~
 git clone https://github.com/jamesubarnes/dotfiles.git
-stow dotfiles
+cd dotfiles && stow .
 ```
 
 This symlinks everything from `~/dotfiles/` into `~` (e.g. `~/.zshrc -> dotfiles/.zshrc`).
@@ -20,12 +21,12 @@ This symlinks everything from `~/dotfiles/` into `~` (e.g. `~/.zshrc -> dotfiles
 ## Adding a new dotfile
 ```sh
 mv ~/.someconfig ~/dotfiles/.someconfig
-cd ~ && stow dotfiles
+cd ~/dotfiles && stow .
 cd ~/dotfiles && git add -A && git commit -m "Add .someconfig"
 ```
 
 ## Removing symlinks
 ```sh
-cd ~
-stow -D dotfiles
+cd ~/dotfiles
+stow -D .
 ```
