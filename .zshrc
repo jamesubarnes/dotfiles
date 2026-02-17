@@ -32,7 +32,7 @@ zle -N edit-command-line
 bindkey '^Xe' edit-command-line
 
 # kubectl tab completion
-source <(kubectl completion zsh)
+[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
 # psql: brew install postgresql@15
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
