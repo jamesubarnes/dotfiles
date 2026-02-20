@@ -2,6 +2,8 @@
 # To regenerate: starship preset nerd-font-symbols -o ~/.config/starship.toml
 # Custom changes are marked with "# CUSTOM" below
 
+format = '$all$kubernetes$line_break$character' # CUSTOM
+
 [aws]
 symbol = " "
 
@@ -89,6 +91,16 @@ symbol = " "
 
 [julia]
 symbol = " "
+
+# BEGIN CUSTOM
+[kubernetes]
+disabled = false
+format = 'on [$symbol$context]($style) '
+
+[[kubernetes.contexts]]
+context_pattern = "gke_.*_(.+-cluster)"
+context_alias = "$1"
+# END CUSTOM
 
 [kotlin]
 symbol = " "
