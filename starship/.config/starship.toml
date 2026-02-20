@@ -55,7 +55,7 @@ symbol = " "
 
 [gcloud]
 symbol = " "
-format = 'on [$symbol$account(@$domain)(\($project\))]($style) ' # CUSTOM
+format = 'on [$symbol($project)]($style) ' # CUSTOM
 
 [git_branch]
 symbol = " "
