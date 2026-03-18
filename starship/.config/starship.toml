@@ -96,10 +96,6 @@ symbol = " "
 [kubernetes]
 disabled = false
 format = 'on [$symbol$context]($style) '
-
-[[kubernetes.contexts]]
-context_pattern = "gke_.*_(.+-cluster)"
-context_alias = "$1"
 # END CUSTOM
 
 [kotlin]
