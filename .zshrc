@@ -17,7 +17,7 @@ fi
 
 # gcloud: brew install gcloud-cli
 export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"
-export CLOUDSDK_PYTHON="$(uv python find 3.12)"
+export CLOUDSDK_PYTHON="$(uv python find --no-project 3.12)"
 
 # fnm: brew install fnm
 eval "$(fnm env --use-on-cd --shell zsh)"
