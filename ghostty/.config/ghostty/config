@@ -1,6 +1,6 @@
 theme = Catppuccin Mocha
 
-background-opacity = 0.85
+background-opacity = 0.95
 
 # brew install font-jetbrains-mono-nerd-font
 font-family = "JetBrainsMono Nerd Font"
