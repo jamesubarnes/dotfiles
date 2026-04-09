@@ -1,3 +1,7 @@
+# default editor
+export EDITOR=vim
+bindkey -e  # use emacs keybindings in zsh regardless of $EDITOR
+
 # homebrew: https://brew.sh
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
