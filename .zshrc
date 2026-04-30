@@ -26,9 +26,6 @@ export CLOUDSDK_PYTHON="$(uv python find --no-project 3.12)"
 # fnm: brew install fnm
 eval "$(fnm env --use-on-cd --shell zsh)"
 
-# fzf: brew install fzf
-source <(fzf --zsh)
-
 # edit-command-line
 autoload -z edit-command-line
 zle -N edit-command-line
