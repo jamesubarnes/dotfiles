@@ -28,7 +28,6 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 
 # fzf: brew install fzf
 source <(fzf --zsh)
-export FZF_CTRL_R_OPTS="--bind 'enter:accept-or-print-query'"
 
 # edit-command-line
 autoload -z edit-command-line
@@ -42,14 +41,10 @@ bindkey '^Xe' edit-command-line
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export PGGSSENCMODE=disable  # Skip Kerberos auth (30s timeout on macOS)
 
-# shell history
-setopt SHARE_HISTORY          # Share history between all sessions
-setopt INC_APPEND_HISTORY     # Write to history file immediately, not on shell exit
-setopt HIST_IGNORE_ALL_DUPS   # Don't record duplicates
-setopt HIST_IGNORE_SPACE      # Don't record commands with leading space
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+# shell history via atuin
+unset HISTFILE                  # don't write ~/.zsh_history at all
+setopt HIST_IGNORE_SPACE        # space-prefix still skips recording
+eval "$(atuin init zsh)"
 
 # zsh-autosuggestions: brew install zsh-autosuggestions
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
