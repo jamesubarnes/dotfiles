@@ -46,9 +46,10 @@ export PGGSSENCMODE=disable  # Skip Kerberos auth (30s timeout on macOS)
 setopt SHARE_HISTORY          # Share history between all sessions
 setopt INC_APPEND_HISTORY     # Write to history file immediately, not on shell exit
 setopt HIST_IGNORE_ALL_DUPS   # Don't record duplicates
+setopt HIST_IGNORE_SPACE      # Don't record commands with leading space
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000
+SAVEHIST=1000
 
 # zsh-autosuggestions: brew install zsh-autosuggestions
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
