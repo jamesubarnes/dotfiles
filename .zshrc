@@ -31,9 +31,6 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey '^Xe' edit-command-line
 
-# kubectl tab completion
-[[ $commands[kubectl] ]] && source <(kubectl completion zsh)
-
 # psql: brew install libpq
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PGGSSENCMODE=disable  # Skip Kerberos auth (30s timeout on macOS)
