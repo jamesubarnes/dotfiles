@@ -2,9 +2,6 @@
 export EDITOR=vim
 bindkey -e  # use emacs keybindings in zsh regardless of $EDITOR
 
-# homebrew: https://brew.sh
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # starship: brew install starship
 eval "$(starship init zsh)"
 
@@ -16,7 +13,10 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
   autoload -Uz compinit
-  compinit
+  # rebuild dump once a day; -C uses cached dump (skips fpath scan + audit)
+  if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then compinit; else compinit -C; fi
+  # byte-compile dump → ~/.zcompdump.zwc; zsh prefers .zwc when fresh
+  [[ -s ~/.zcompdump && (! -s ~/.zcompdump.zwc || ~/.zcompdump -nt ~/.zcompdump.zwc) ]] && zcompile ~/.zcompdump
 fi
 
 # gcloud: brew install gcloud-cli
