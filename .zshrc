@@ -13,10 +13,7 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
   autoload -Uz compinit
-  # rebuild dump once a day; -C uses cached dump (skips fpath scan + audit)
-  if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then compinit; else compinit -C; fi
-  # byte-compile dump → ~/.zcompdump.zwc; zsh prefers .zwc when fresh
-  [[ -s ~/.zcompdump && (! -s ~/.zcompdump.zwc || ~/.zcompdump -nt ~/.zcompdump.zwc) ]] && zcompile ~/.zcompdump
+  compinit
 fi
 
 # gcloud: brew install gcloud-cli
