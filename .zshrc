@@ -13,15 +13,23 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
 
   autoload -Uz compinit
-  compinit
+  # rebuild dump once a day; -C uses cached dump (skips fpath scan + audit).
+  # anon fn scopes extendedglob so the (#qN.mh+24) age qualifier is recognized.
+  () {
+    setopt localoptions extendedglob
+    if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then compinit; else compinit -C; fi
+    # byte-compile dump → ~/.zcompdump.zwc; zsh prefers .zwc when fresh
+    [[ -s ~/.zcompdump && (! -s ~/.zcompdump.zwc || ~/.zcompdump -nt ~/.zcompdump.zwc) ]] \
+      && zcompile ~/.zcompdump
+  }
 fi
 
-# gcloud: brew install gcloud-cli
+# gcloud: brew install gcloud-cli; hardcoded to avoid forking uv at every shell start
 export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"
-export CLOUDSDK_PYTHON="$(uv python find --no-project 3.12)"
+export CLOUDSDK_PYTHON="$HOME/.local/share/uv/python/cpython-3.12-macos-aarch64-none/bin/python3.12"
 
 # fnm: brew install fnm
-eval "$(fnm env --use-on-cd --shell zsh)"
+eval "$(fnm env --shell zsh)"
 
 # edit-command-line
 autoload -z edit-command-line
