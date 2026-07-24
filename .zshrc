@@ -40,6 +40,13 @@ bindkey '^Xe' edit-command-line
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PGGSSENCMODE=disable  # Skip Kerberos auth (30s timeout on macOS)
 
+# GNU userland over macOS BSD (so sed \b, grep -P, date -d, readlink -f behave like Linux)
+# brew install coreutils findutils gnu-sed gawk grep gnu-tar make bash
+for _gnubin in coreutils gnu-sed grep gawk findutils gnu-tar make; do
+  export PATH="/opt/homebrew/opt/$_gnubin/libexec/gnubin:$PATH"
+done
+unset _gnubin
+
 # shell history via atuin
 unset HISTFILE                  # don't write ~/.zsh_history at all
 setopt HIST_IGNORE_SPACE        # space-prefix still skips recording
