@@ -24,9 +24,8 @@ if type brew &>/dev/null; then
   }
 fi
 
-# gcloud: brew install gcloud-cli; hardcoded to avoid forking uv at every shell start
+# gcloud: brew install gcloud-cli
 export PATH=/opt/homebrew/share/google-cloud-sdk/bin:"$PATH"
-export CLOUDSDK_PYTHON="$HOME/.local/share/uv/python/cpython-3.12-macos-aarch64-none/bin/python3.12"
 
 # fnm: brew install fnm
 eval "$(fnm env --shell zsh)"
